@@ -1,5 +1,6 @@
 const http = require('http')
 const fs = require('fs')
+const hostname = '192.168.10.2'
 const port = 80
 
 const server = http.createServer((req, res)=>{
@@ -16,7 +17,7 @@ const server = http.createServer((req, res)=>{
 });
 
 
-server.listen(port, (err)=>{
+server.listen(port, hostname, (err)=>{
     if (err) {
         console.log ("something went wrong", error)
     }else {
