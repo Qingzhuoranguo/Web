@@ -1,26 +1,18 @@
-const http = require('http')
-const fs = require('fs')
-const hostname = '192.168.10.2'
-const port = 80
+const express = require('express')
+const app = express()
+const Check = require('./middleware/validation.js')
 
-const server = http.createServer((req, res)=>{
-    res.writeHead(200, {'Content-Type': 'text/html'})
-    fs.readFile('pages/homepage.html',(err, data)=>{
-        if (err){
-            res.writeHead(404)
-            res.write("error: file not found")
-        }else{
-            res.write(data)
-        }
-        res.end();
-    })
-});
+app.use (Check.check)
 
 
-server.listen(port, hostname, (err)=>{
-    if (err) {
-        console.log ("something went wrong", error)
-    }else {
-        console.log (`Server is litsening on port ${port}`)
-    }
+app.get('/', function (req, res) {
+  res.send('hello, express')
 })
+
+  
+
+
+
+
+
+app.listen(80)
