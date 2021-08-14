@@ -1,7 +1,7 @@
 module.exports = {
 
-    testCheck: function(req, res, next) {
-        console.log(`Validation module passed`)
+    sessionCheck: function(req, res, next) {
+        console.log(`sessionCheck module passed`)
         next();
     }
     

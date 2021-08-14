@@ -1,18 +1,15 @@
 const express = require('express')
-const Check = require("./middlewares/validation.js")
-const routes = require('./routers')
+const Check = require("./middlewares/validation")
+const routers = require('./routers/gateway')
 
 const app = express()
 const port = 80;
 
-app.use (Check.testCheck)
+app.set('views', __dirname + '/pages');
+app.engine('html', require('ejs').renderFile)
 
-
-app.get('/', function (req, res) {
-  res.send('hello, express')
-});
-
-routes(app)
+// app.use (Check.sessionCheck)
+routers(app)
 
 app.listen(port, ()=> {
   console.log(`Listening on port: ${port} ...`);
